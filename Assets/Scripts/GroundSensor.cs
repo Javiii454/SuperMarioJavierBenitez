@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundSensor : MonoBehaviour
 {
    public bool isGrounded;
+   private Enemy enemyScript;
     // Start is called before the first frame update
 
 
@@ -17,7 +18,12 @@ public class GroundSensor : MonoBehaviour
             Debug.Log(collider.gameObject.name);
            
         }
-       
+       else if (collider.gameObject.layer == 6)
+       {
+            enemyScript = collider.gameObject.GetComponent<Enemy>(); // Para que al enemigo en concreto que hemos saltado se rellene con el script de "Enemy"
+            enemyScript.Death(); // Llamar a la función death del script del enemigo 
+
+       }
     }
     void OnTriggerStay2D(Collider2D collider)
     {
